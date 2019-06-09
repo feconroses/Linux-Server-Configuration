@@ -30,7 +30,7 @@ URL: 206.189.173.114
 
 ## Selecting a server host
 
-Tried Amazon Lightsail out of curiosity but it didn't seem as intuitive as I would have expected. So, I preferred to use Digital Ocean which I was already familiar with and had a droplet running for my [blog](https://growthandtraction.com/) that I set up with [Ghost](https://github.com/TryGhost/Ghost).
+Tried Amazon Lightsail but it didn't seem as intuitive as I would have expected. So, I preferred to use Digital Ocean which I was already familiar with.
 
 
 ## Setting up the server
@@ -78,7 +78,7 @@ Next, I needed to get the catalog app up and running on the Ubuntu server. For t
 
 ## Setting up a subdomain
 
-Already had the domain https://growthandtraction.com, so I decided to use a subdomain catalog.growthandtraction for this catalog app. Created a A record and pointed it to the server in Digital Ocean.
+Already had the domain https://growthandtraction.com, so I decided to use a subdomain catalog.growthandtraction for serving this catalog app. Created a A record and pointed it to the server in Digital Ocean.
 
 
 ## Configuring SSL

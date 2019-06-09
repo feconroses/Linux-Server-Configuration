@@ -9,7 +9,7 @@ The application can be seen live in the following URL: https://catalog.growthand
 
 ## Table of Contents
 
-- [Information for the Grader User](Information-for-the-grader-user)
+- [Information for the Grader User](#information-for-the-grader-user)
 - [Selecting a server host](#selecting-a-server-host)
 - [Setting up the server](#setting-up-the-server)
 - [Deploying the catalog app](#deploying-the-catalog-app)
@@ -20,17 +20,17 @@ The application can be seen live in the following URL: https://catalog.growthand
 
 ## Information for the grader user
 
-i. The IP address and SSH port so your server can be accessed by the reviewer: 
+i. The IP address and SSH port so the reviewer can access the server: 
 IP: 206.189.173.114
 Port: 2241
 
-ii. The complete URL to your hosted web application: 
+ii. The complete URL to the hosted web application: 
 URL: 206.189.173.114
 
 
 ## Selecting a server host
 
-Tried Amazon Lightsail out of curiosity but it didn't seem as intuitive as I would have expected. So, I prefered to use Digital Ocean which I was already familiar with and had a droplet running for my [personal blog](https://growthandtraction.com/) that I setted up with [Ghost](https://github.com/TryGhost/Ghost).
+Tried Amazon Lightsail out of curiosity but it didn't seem as intuitive as I would have expected. So, I preferred to use Digital Ocean which I was already familiar with and had a droplet running for my [blog](https://growthandtraction.com/) that I set up with [Ghost](https://github.com/TryGhost/Ghost).
 
 
 ## Setting up the server
@@ -51,7 +51,7 @@ The following is a summary of the configuration steps made to the server:
 12. Disabled remote login of the root user
 13. Changed the default port to 2241
 14. Restarted SSH
-14. Created a server firewall to only allow inncoming connections for SSH (port 2200), WWW, HTTP (port 80), and NTP (port 123). Also allowed outgoing as default.
+14. Created a server firewall to only allow incoming connections for SSH (port 2200), WWW, HTTP (port 80), and NTP (port 123). Also allowed outgoing as default.
 
 
 ## Deploying the Catalog App
@@ -67,7 +67,7 @@ Next, I needed to get the catalog app up and running on the Ubuntu server. For t
 6. Installed needed modules and packages for the catalog app (httplib2, requests, sqlalchemy, oauth2client, and httplib2)
 6. Renamed application.py as __init__.py
 7. Deleted previous catalog.db file (which was cloned from the repo)
-8. Installed and configured PostgreSQL. Logged in as default user postregs, connnected to the system using `psql`, created a postgres user `catalog` with password. Give the user permitions to create a database. Then, created a database named `catalog` with the owner `catalog`. Connected to the database catalog using `\c catalog` and revoked all rights `REVOKE ALL ON SCHEMA public FROM public;`. Also, granted only access to the catalog role `GRANT ALL ON SCHEMA public TO catalog;`. Finally exited PostresSQL.
+8. Installed and configured PostgreSQL. Logged in as default user postregs, connnected to the system using `psql`, created a postgres user `catalog` with password. Give the user permissions to create a database. Then, created a database named `catalog` with the owner `catalog`. Connected to the database catalog using `\c catalog` and revoked all rights `REVOKE ALL ON SCHEMA public FROM public;`. Also, granted only access to the catalog role `GRANT ALL ON SCHEMA public TO catalog;`. Finally exited PostresSQL.
 9. Created a new PostgreSQL database schema using `python3 database_setup.py`
 10. Installed psycopg2. 
 11. Changed the line starting with "engine" to `engine = create_engine('postgresql://catalog:DB-PASSWORD@localhost/catalog')`
@@ -85,7 +85,7 @@ Already had the domain https://growthandtraction.com, so I decided to use a subd
 
 Now, I needed to configure SSL so users can access to the https://catalog.growthandtraction.com subdomain using HTTPS. 
 
-1. First, I created a self signed SSL certificate and configured the `default-ssl.conf` 
+1. First, I created a self-signed SSL certificate and configured the `default-ssl.conf` 
 following the steps in this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-apache-for-ubuntu-14-04). 
 2. Then, I activated the SSL virtual host using `sudo a2ensite default-ssl.conf` and restarted Apache to load the new virtual host file using `sudo service apache2 restart`
 3. Finally, to avoid getting a warning that the browser cannot verify the identity of my server because it has not been signed by one of the certificate authorities that it trusts, I got a third-party certificate using `Let's Encrypt` (used this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-18-04) as a reference).
@@ -93,4 +93,4 @@ following the steps in this [tutorial](https://www.digitalocean.com/community/tu
 
 ## Adjusting OAuth from Google
 
-Finally, I needed to re-configure the OAuth from Google so it works for the new sub-domainn. So, I adjusted the **Authorized JavaScript origins** in Google Console APIs so the Google OAuth can support the http://catalog.growthandtraction.com and https://catalog.growthandtraction.com. Also, added http://catalog.growthandtraction.com/login, https://catalog.growthandtraction.com/login, http://catalog.growthandtraction.com/gconnect and https://catalog.growthandtraction.com/gconnect as **Authorized redirect URIs**. Then, I replaced the old client_secrets.json file in the server with the new client_secrets.json file.
+Finally, I needed to re-configure the OAuth from Google so it works for the new sub-domain. So, I adjusted the **Authorized JavaScript origins** in Google Console APIs so the Google OAuth can support the http://catalog.growthandtraction.com and https://catalog.growthandtraction.com. Also, added http://catalog.growthandtraction.com/login, https://catalog.growthandtraction.com/login, http://catalog.growthandtraction.com/gconnect, and https://catalog.growthandtraction.com/gconnect as **Authorized redirect URIs**. Then, I replaced the old client_secrets.json file in the server with the new client_secrets.json file.

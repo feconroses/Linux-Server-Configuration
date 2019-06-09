@@ -24,8 +24,13 @@ i. The IP address and SSH port so the reviewer can access the server:
 IP: 206.189.173.114
 Port: 2241
 
-ii. The complete URL to the hosted web application: 
-URL: 206.189.173.114
+ii. Information to login to `grader` user:
+User: grader
+Paswword: udacityrocks1!
+SSH Keys: the SSH key is submitted with the project.
+
+iii. The complete URL to the hosted web application: 
+URL: https://catalog.growthandtraction.com/
 
 
 ## Selecting a server host

@@ -56,7 +56,7 @@ The following is a summary of the configuration steps made to the server:
 12. Disabled remote login of the root user
 13. Changed the default port to 2241
 14. Restarted SSH
-14. Created a server firewall to only allow incoming connections for SSH (port 2200), WWW, HTTP (port 80), and NTP (port 123). Also allowed outgoing as default.
+14. Created a server firewall to only allow incoming connections for SSH (port 2200 and 2241), WWW, HTTP (port 80), and NTP (port 123). Also allowed outgoing as default.
 
 
 ## Deploying the Catalog App

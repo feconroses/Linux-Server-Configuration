@@ -2,23 +2,23 @@
 
 This project took a baseline installation of a Linux distribution on a virtual machine and prepared it to host web applications, to include installing updates, securing it from a number of attack vectors and installing/configuring web and database servers.
 
-The application can be seen live in the following URL: ()[https://catalog.growthandtraction.com/]
+The application can be seen live in the following URL: https://catalog.growthandtraction.com/
 
 ![](https://i.ibb.co/VpXVPPq/Screen-Shot-2019-06-09-at-12-11-27-PM.png)
 
 
 ## Table of Contents
 
-- [Information for the Grader User]()
-- [Selecting a server host](#select-a-server-host)
-- [Setting up the server](#set-up-server)
-- [Deploying the catalog app](#deploy-app)
-- [Domain name](#domain-name)
-- [SSL](#ssl)
-- [Database maintenance](#database-maintenance)
+- [Information for the Grader User](Information-for-the-grader-user)
+- [Selecting a server host](#selecting-a-server-host)
+- [Setting up the server](#setting-up-the-server)
+- [Deploying the catalog app](#deploying-the-catalog-app)
+- [Domain name](#setting-up-a-subdomain)
+- [Configuring SSL](#configuring-ssl)
+- [Adjusting OAuth from Google](#adjusting-oauth-from-google)
 
 
-## Information for the Grader User
+## Information for the grader user
 
 i. The IP address and SSH port so your server can be accessed by the reviewer: 
 IP: 206.189.173.114
@@ -28,9 +28,9 @@ ii. The complete URL to your hosted web application:
 URL: 206.189.173.114
 
 
-## Selecting a Server Host
+## Selecting a server host
 
-Tried Amazon Lightsail out of curiosity but it didn't seem as intuitive as I would have expected. So, I prefered to use Digital Ocean which I was already familiar with and had a droplet running for my (personal blog)[https://growthandtraction.com/] that I setted up with (Ghost)[https://github.com/TryGhost/Ghost].
+Tried Amazon Lightsail out of curiosity but it didn't seem as intuitive as I would have expected. So, I prefered to use Digital Ocean which I was already familiar with and had a droplet running for my [personal blog](https://growthandtraction.com/) that I setted up with [Ghost](https://github.com/TryGhost/Ghost).
 
 
 ## Setting up the server
@@ -61,9 +61,9 @@ Next, I needed to get the catalog app up and running on the Ubuntu server. For t
 1. Installed apache
 2. Installed python 3.7 and pip3
 3. Installed Flask and mod_wsgi. 
-4. Created a Flask application following the steps on this (tutorial)[https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps]. This includes creating a __init__.py file, a virtual host config file `FlaskApp.conf` in the folder /etc/apache2/sites-available and enabling the virtual host, and also creating a `flaskapp.wsgi` file.
+4. Created a Flask application following the steps on this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps). This includes creating a __init__.py file, a virtual host config file `FlaskApp.conf` in the folder /etc/apache2/sites-available and enabling the virtual host, and also creating a `flaskapp.wsgi` file.
 5. Restarted Apache
-5. Git cloned the catalog app from my (repository)[https://github.com/feconroses/item_catalog]
+5. Git cloned the catalog app from my [repository](https://github.com/feconroses/item_catalog)
 6. Installed needed modules and packages for the catalog app (httplib2, requests, sqlalchemy, oauth2client, and httplib2)
 6. Renamed application.py as __init__.py
 7. Deleted previous catalog.db file (which was cloned from the repo)
@@ -78,17 +78,17 @@ Next, I needed to get the catalog app up and running on the Ubuntu server. For t
 
 ## Setting up a subdomain
 
-Already had the domain (https://growthandtraction.com/)[https://growthandtraction.com/], so I decided to use a subdomain catalog.growthandtraction for this catalog app. Created a A record and pointed it to the server in Digital Ocean.
+Already had the domain https://growthandtraction.com, so I decided to use a subdomain catalog.growthandtraction for this catalog app. Created a A record and pointed it to the server in Digital Ocean.
 
 
 ## Configuring SSL
 
-Now, I needed to configure SSL so users can access to the (https://catalog.growthandtraction.com/)[https://catalog.growthandtraction.com/] subdomain using HTTPS. 
+Now, I needed to configure SSL so users can access to the https://catalog.growthandtraction.com subdomain using HTTPS. 
 
 1. First, I created a self signed SSL certificate and configured the `default-ssl.conf` 
-following the steps in this (tutorial)[https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-apache-for-ubuntu-14-04]. 
+following the steps in this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-apache-for-ubuntu-14-04). 
 2. Then, I activated the SSL virtual host using `sudo a2ensite default-ssl.conf` and restarted Apache to load the new virtual host file using `sudo service apache2 restart`
-3. Finally, to avoid getting a warning that the browser cannot verify the identity of my server because it has not been signed by one of the certificate authorities that it trusts, I got a third-party certificate using `Let's Encrypt` (used this (tutorial)[https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-18-04] as a reference).
+3. Finally, to avoid getting a warning that the browser cannot verify the identity of my server because it has not been signed by one of the certificate authorities that it trusts, I got a third-party certificate using `Let's Encrypt` (used this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-18-04) as a reference).
 
 
 ## Adjusting OAuth from Google

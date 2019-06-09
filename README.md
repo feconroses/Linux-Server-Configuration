@@ -16,6 +16,7 @@ The application can be seen live in the following URL: https://catalog.growthand
 - [Domain name](#setting-up-a-subdomain)
 - [Configuring SSL](#configuring-ssl)
 - [Adjusting OAuth from Google](#adjusting-oauth-from-google)
+- [Third party resources](#third-party-resources)
 
 
 ## Information for the grader user
@@ -99,3 +100,12 @@ following the steps in this [tutorial](https://www.digitalocean.com/community/tu
 ## Adjusting OAuth from Google
 
 Finally, I needed to re-configure the OAuth from Google so it works for the new sub-domain. So, I adjusted the **Authorized JavaScript origins** in Google Console APIs so the Google OAuth can support the http://catalog.growthandtraction.com and https://catalog.growthandtraction.com. Also, added http://catalog.growthandtraction.com/login, https://catalog.growthandtraction.com/login, http://catalog.growthandtraction.com/gconnect, and https://catalog.growthandtraction.com/gconnect as **Authorized redirect URIs**. Then, I replaced the old client_secrets.json file in the server with the new client_secrets.json file.
+
+
+## Third party resources
+
+Used the following tutorials for completing this project:
+
+* [How to deploy a Flask application on an Ubuntu VPS](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)
+* [SSL on apache tutorial](https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-apache-for-ubuntu-14-04)
+* [Let's Encrypt tutorial](https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-18-04)

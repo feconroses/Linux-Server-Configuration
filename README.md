@@ -9,7 +9,6 @@ The application can be seen live in the following URL: https://catalog.growthand
 
 ## Table of Contents
 
-- [Information for the Grader User](#information-for-the-grader-user)
 - [Selecting a server host](#selecting-a-server-host)
 - [Setting up the server](#setting-up-the-server)
 - [Deploying the catalog app](#deploying-the-catalog-app)
@@ -17,21 +16,6 @@ The application can be seen live in the following URL: https://catalog.growthand
 - [Configuring SSL](#configuring-ssl)
 - [Adjusting OAuth from Google](#adjusting-oauth-from-google)
 - [Third party resources](#third-party-resources)
-
-
-## Information for the grader user
-
-i. The IP address and SSH port so the reviewer can access the server: 
-IP: 206.189.173.114
-Port: 2241
-
-ii. Information to login to `grader` user:
-User: grader
-Paswword: udacityrocks1!
-SSH Keys: the SSH key is submitted with the project.
-
-iii. The complete URL to the hosted web application: 
-URL: https://catalog.growthandtraction.com/
 
 
 ## Selecting a server host
@@ -55,9 +39,10 @@ The following is a summary of the configuration steps made to the server:
 10. Copied SSH public keys to the server using `ssh-copy-id`
 11. Disabled password-based authentication to the server to enforce key-based SSH authentication
 12. Disabled remote login of the root user
-13. Changed the default port to 2241
-14. Restarted SSH
-14. Created a server firewall to only allow incoming connections for SSH (port 2200 and 2241), WWW, HTTP (port 80), and NTP (port 123). Also allowed outgoing as default.
+13. Changed the default SSH port
+14. Denied default SSH port 22
+15. Restarted SSH
+16. Created a server firewall to only allow incoming connections for SSH, WWW, HTTP (port 80), HTTPS (443) and NTP (port 123). Also allowed outgoing as default.
 
 
 ## Deploying the Catalog App
